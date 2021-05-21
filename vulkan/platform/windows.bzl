@@ -11,7 +11,10 @@ def _impl(repository_ctx):
 cc_library(
     name = "vulkan_cc_library",
     srcs = ["vulkan_sdk_windows/Lib/vulkan-1.lib"],
-    hdrs = glob(["vulkan_sdk_windows/Include/**/*.h"]),
+    hdrs = glob([
+        "vulkan_sdk_windows/Include/**/*.h",
+        "vulkan_sdk_windows/Include/**/*.hpp",
+        ]),
     includes = ["vulkan_sdk_windows/Include"],
     visibility = ["//visibility:public"]
 )

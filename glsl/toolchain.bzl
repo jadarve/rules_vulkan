@@ -10,6 +10,7 @@ def _glsl_toolchain_impl(ctx):
     toolchain_info = platform_common.ToolchainInfo(
         glslc = ctx.attr.glslc,
         glslc_executable = glslc_executable,
+        is_windows = ctx.attr.is_windows,
     )
 
     return [toolchain_info]
@@ -22,5 +23,9 @@ glsl_toolchain = rule(
             doc = "The location of the glslc compiler.",
             allow_single_file = True
         ),
+        "is_windows": attr.bool(
+            doc = "Whether or not this toolchain runs in windows",
+            mandatory = True
+        )
     },
 )

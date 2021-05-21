@@ -9,7 +9,8 @@ toolchain_type(
 
 glsl_toolchain(
     name = "on_windows",
-    glslc = "@vulkan_windows//:glslc"
+    glslc = "@vulkan_windows//:glslc",
+    is_windows = True,
 )
 
 toolchain(

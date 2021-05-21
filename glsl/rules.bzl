@@ -1,15 +1,11 @@
 """
 """
 
-# TODO: How does this behave in other operating systems?
-# load("@vulkan_windows//:glslc.bzl", glslc_windows = "glslc")
-
 GlslInfo = provider(fields=[
     "includes",
     "headers"
 ])
 
-# glslc -I lib/ -o moni.spv imageToBuffer.comp
 def _glsl_header_library(ctx):
 
     strip_include_prefix = ctx.attr.strip_include_prefix
@@ -45,92 +41,6 @@ def _glsl_header_library(ctx):
         )
     ]
 
-
-# def _glsl_shader(ctx):
-
-
-#     shader = ctx.file.shader
-
-#     spirv_name = shader.basename[:-len(shader.extension)] + "spv"
-
-#     spirv = ctx.actions.declare_file(spirv_name, sibling=shader)
-
-#     args = ctx.actions.args()
-#     inputs = [shader]
-
-#     for dep in ctx.attr.deps:
-
-#         for inc in dep[GlslInfo].includes.to_list():
-#             args.add("-I", inc)
-
-#         # add each header as an input file for the command.
-#         # This mounts the header into the sandbox running glslc and makes it
-#         # accessible to the compiler
-#         for hdr in dep[GlslInfo].headers.to_list():
-#             inputs.append(hdr)
-
-
-#     args.add("-o", spirv)
-#     args.add(shader.path)
-
-#     # CONFIGURE: set this value accordingly.
-#     is_windows = True
-
-#     if is_windows:
-#         ctx.actions.run(
-#             inputs = inputs,
-#             outputs = [spirv],
-#             arguments = [args],
-
-#             # CONFIGURE: set to a proper path.
-#             executable = "C:/VulkanSDK/1.2.176.1/Bin/glslc",
-#             # executable = glslc_windows,
-#             progress_message = "compiling GLSL",
-#             mnemonic = 'GLSLC'
-#         )
-#     else:
-#         ctx.actions.run_shell(
-#             inputs = inputs,
-#             outputs = [spirv],
-#             arguments = [args],
-#             command = "glslc $@",
-#             progress_message = "compiling GLSL",
-#             mnemonic = 'GLSLC'
-#         )
-
-#     runfiles = ctx.runfiles(
-#         files = [spirv]
-#     )
-
-#     default_files = depset(direct=[spirv])
-
-#     return [
-#         DefaultInfo(files=default_files, runfiles=runfiles)
-#     ]
-
-
-# glsl_shader = rule(
-#     implementation = _glsl_shader,
-#     attrs = {
-#         "shader": attr.label(allow_single_file=[".comp"]),
-#         "deps": attr.label_list(providers=[GlslInfo]),
-#     },
-#     provides = [DefaultInfo]
-# )
-
-
-glsl_header_library = rule(
-    implementation = _glsl_header_library,
-    attrs = {
-        "hdrs": attr.label_list(allow_files=[".glsl"]),
-        "strip_include_prefix": attr.string(default=""),
-    },
-    provides = [DefaultInfo, GlslInfo]
-)
-
-
-###################################################################################################
-
 def _glsl_shader(ctx):
 
     toolchain = ctx.toolchains["@rules_vulkan//glsl:toolchain_type"]
@@ -159,10 +69,7 @@ def _glsl_shader(ctx):
     args.add("-o", spirv)
     args.add(shader.path)
 
-    # CONFIGURE: set this value accordingly.
-    is_windows = True
-
-    if is_windows:
+    if toolchain.is_windows:
         ctx.actions.run(
             inputs = inputs,
             outputs = [spirv],
@@ -191,6 +98,14 @@ def _glsl_shader(ctx):
         DefaultInfo(files=default_files, runfiles=runfiles)
     ]
 
+glsl_header_library = rule(
+    implementation = _glsl_header_library,
+    attrs = {
+        "hdrs": attr.label_list(allow_files=[".glsl"]),
+        "strip_include_prefix": attr.string(default=""),
+    },
+    provides = [DefaultInfo, GlslInfo]
+)
 
 glsl_shader = rule(
     implementation = _glsl_shader,
