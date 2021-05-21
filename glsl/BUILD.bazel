@@ -1,0 +1,25 @@
+"""
+"""
+
+load("//glsl:toolchain.bzl", "glsl_toolchain")
+
+toolchain_type(
+    name = "toolchain_type",
+)
+
+
+glsl_toolchain(
+    name = "on_windows",
+    glslc = "C:/VulkanSDK/1.2.176.1/Bin/glslc"
+)
+
+
+toolchain(
+    name = "glsl_windows_toolchain",
+    exec_compatible_with = [
+        "@platforms//os:windows",
+        "@platforms//cpu:x86_64",
+    ],
+    toolchain = ":on_windows",
+    toolchain_type = "@rules_glsl//glsl:toolchain_type",
+)

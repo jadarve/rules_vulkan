@@ -1,0 +1,15 @@
+# SublimeText
+*.sublime-project
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/
+
+# Vulkan
+*.spv
+
+# Bazel
+bazel-*/
+
+# CLion
+.clwb/

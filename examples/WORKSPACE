@@ -1,0 +1,11 @@
+workspace(
+    name = "rules_glsl_examples"
+)
+
+local_repository(
+    name = "rules_glsl",
+    path = ".."
+)
+
+load("@rules_glsl//glsl:repositories.bzl", "glsl_repositories")
+glsl_repositories()
