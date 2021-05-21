@@ -3,8 +3,13 @@
 
 def _glsl_toolchain_impl(ctx):
 
+    # it is expected the the glslc target contains one and only one
+    # file that is the compiler.
+    glslc_executable = ctx.attr.glslc.files.to_list()[0].path
+
     toolchain_info = platform_common.ToolchainInfo(
-        glslc = ctx.attr.glslc
+        glslc = ctx.attr.glslc,
+        glslc_executable = glslc_executable,
     )
 
     return [toolchain_info]
@@ -13,9 +18,9 @@ def _glsl_toolchain_impl(ctx):
 glsl_toolchain = rule(
     implementation = _glsl_toolchain_impl,
     attrs = {
-        "glslc": attr.string(
-            doc = "The location of the glslc compiler",
-            # allow_single_file = True
+        "glslc": attr.label(
+            doc = "The location of the glslc compiler.",
+            allow_single_file = True
         ),
     },
 )

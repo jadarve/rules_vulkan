@@ -7,12 +7,10 @@ toolchain_type(
     name = "toolchain_type",
 )
 
-
 glsl_toolchain(
     name = "on_windows",
-    glslc = "C:/VulkanSDK/1.2.176.1/Bin/glslc"
+    glslc = "@vulkan_windows//:glslc"
 )
-
 
 toolchain(
     name = "glsl_windows_toolchain",

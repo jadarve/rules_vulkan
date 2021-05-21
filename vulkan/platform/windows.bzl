@@ -7,9 +7,6 @@ def _impl(repository_ctx):
 
     repository_ctx.symlink(sdk_path, "vulkan_sdk_windows")
 
-    glslc_program = repository_ctx.which("glslc.exe")
-    print("GLSLC_PROGRAM: {0}".format(glslc_program))
-
     file_content = """
 cc_library(
     name = "vulkan_cc_library",
@@ -19,15 +16,14 @@ cc_library(
     visibility = ["//visibility:public"]
 )
 
+filegroup(
+    name = "glslc",
+    srcs = ["vulkan_sdk_windows/Bin/glslc.exe"],
+    visibility = ["//visibility:public"],
+)
 """
-    glslc_file_content = """
-
-glslc = "<GLSLC_PROGRAM>"
-
-""".replace("<GLSLC_PROGRAM>", str(glslc_program))
 
     repository_ctx.file("BUILD.bazel", file_content)
-    repository_ctx.file("glslc.bzl", glslc_file_content)
 
 vulkan_windows = repository_rule(
     implementation=_impl,

@@ -167,11 +167,7 @@ def _glsl_shader(ctx):
             inputs = inputs,
             outputs = [spirv],
             arguments = [args],
-
-            # CONFIGURE: set to a proper path.
-            # executable = "C:/VulkanSDK/1.2.176.1/Bin/glslc",
-            executable = toolchain.glslc,
-            # executable = glslc_windows,
+            executable = toolchain.glslc_executable,
             progress_message = "compiling GLSL",
             mnemonic = 'GLSLC'
         )
