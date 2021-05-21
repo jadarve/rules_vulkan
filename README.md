@@ -1,3 +1,3 @@
-# rules_glsl
+# rules_vulkan
 
-Bazel rules for building GLSL targets.
+Bazel rules for using the Vulkan SDK.

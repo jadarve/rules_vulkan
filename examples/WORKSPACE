@@ -1,11 +1,11 @@
 workspace(
-    name = "rules_glsl_examples"
+    name = "rules_vulkan_examples"
 )
 
 local_repository(
-    name = "rules_glsl",
+    name = "rules_vulkan",
     path = ".."
 )
 
-load("@rules_glsl//glsl:repositories.bzl", "glsl_repositories")
-glsl_repositories()
+load("@rules_vulkan//vulkan:repositories.bzl", "vulkan_repositories")
+vulkan_repositories()

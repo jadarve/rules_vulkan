@@ -133,7 +133,7 @@ glsl_header_library = rule(
 
 def _glsl_shader(ctx):
 
-    toolchain = ctx.toolchains["@rules_glsl//glsl:toolchain_type"]
+    toolchain = ctx.toolchains["@rules_vulkan//glsl:toolchain_type"]
 
     shader = ctx.file.shader
 
@@ -202,6 +202,6 @@ glsl_shader = rule(
         "shader": attr.label(allow_single_file=[".comp"]),
         "deps": attr.label_list(providers=[GlslInfo]),
     },
-    toolchains = ["@rules_glsl//glsl:toolchain_type"],
+    toolchains = ["@rules_vulkan//glsl:toolchain_type"],
     provides = [DefaultInfo]
 )

@@ -1,3 +1,3 @@
 workspace(
-    name = "rules_glsl"
+    name = "rules_vulkan"
 )

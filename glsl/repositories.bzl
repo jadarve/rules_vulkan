@@ -5,5 +5,5 @@ def glsl_repositories():
     """
     
     native.register_toolchains(
-        "@rules_glsl//glsl:glsl_windows_toolchain"
+        "@rules_vulkan//glsl:glsl_windows_toolchain"
     )
