@@ -13,7 +13,7 @@ toolchain_type(
 
 glsl_toolchain(
     name = "on_linux",
-    glslc = "glslc",
+    glslc = "@vulkan_linux//:glslc",
     is_windows = False,
 )
 

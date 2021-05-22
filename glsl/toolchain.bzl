@@ -11,7 +11,7 @@ def _glsl_toolchain_impl(ctx):
         glslc_executable = ctx.attr.glslc.files.to_list()[0].path
     else:
         glslc_executable = "glslc"
-
+    
     toolchain_info = platform_common.ToolchainInfo(
         glslc = ctx.attr.glslc,
         glslc_executable = glslc_executable,

@@ -79,6 +79,16 @@ def _glsl_shader(ctx):
             mnemonic = 'GLSLC'
         )
     else:
+        # ctx.actions.run(
+        #     inputs = inputs,
+        #     outputs = [spirv],
+        #     arguments = [args],
+        #     executable = toolchain.glslc_executable,
+        #     progress_message = "compiling GLSL",
+        #     mnemonic = 'GLSLC'
+        # )
+        # FIXME: using ctx.actions.run with toolchain.glslc_executable
+        #        does not work in Linux.
         ctx.actions.run_shell(
             inputs = inputs,
             outputs = [spirv],
