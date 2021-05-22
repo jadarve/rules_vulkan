@@ -83,7 +83,7 @@ def _glsl_shader(ctx):
             inputs = inputs,
             outputs = [spirv],
             arguments = [args],
-            command = "glslc $@",
+            command = "{0} $@".format(toolchain.glslc_executable),
             progress_message = "compiling GLSL",
             mnemonic = 'GLSLC'
         )

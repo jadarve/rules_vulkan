@@ -5,7 +5,12 @@ def _glsl_toolchain_impl(ctx):
 
     # it is expected the the glslc target contains one and only one
     # file that is the compiler.
-    glslc_executable = ctx.attr.glslc.files.to_list()[0].path
+    glslc_executable = ""
+
+    if ctx.attr.is_windows:
+        glslc_executable = ctx.attr.glslc.files.to_list()[0].path
+    else:
+        glslc_executable = "glslc"
 
     toolchain_info = platform_common.ToolchainInfo(
         glslc = ctx.attr.glslc,
