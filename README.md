@@ -14,7 +14,7 @@ http_archive(
     urls = [
         "https://github.com/jadarve/rules_vulkan/archive/refs/tags/v0.0.1.zip",
     ],
-    sha256 = "25a610e1c8873b83a809a5db661648127da5a25c2202f7f845ba3c80f75b9342",
+    sha256 = "1f640f6ddedddfb6c8eb8cfa065de4621ab510f8f6a47a69986ca11bb466f061",
 )
 
 load("@rules_vulkan//vulkan:repositories.bzl", "vulkan_repositories")
