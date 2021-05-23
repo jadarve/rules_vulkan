@@ -120,7 +120,7 @@ glsl_header_library = rule(
 glsl_shader = rule(
     implementation = _glsl_shader,
     attrs = {
-        "shader": attr.label(allow_single_file=[".comp"]),
+        "shader": attr.label(allow_single_file=[".vert", ".frag", ".tesc", ".tese", ".geom", ".comp"]),
         "deps": attr.label_list(providers=[GlslInfo]),
     },
     toolchains = ["@rules_vulkan//glsl:toolchain_type"],
