@@ -12,9 +12,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 http_archive(
     name = "rules_vulkan",
     urls = [
-        "https://github.com/jadarve/rules_vulkan/releases/download/0.0.1/rules_pkg-0.0.1.tar.gz",
+        "https://github.com/jadarve/rules_vulkan/archive/refs/tags/v0.0.1.zip",
     ],
-    sha256 = "NEED TO COMPUTE",
+    sha256 = "25a610e1c8873b83a809a5db661648127da5a25c2202f7f845ba3c80f75b9342",
 )
 
 load("@rules_vulkan//vulkan:repositories.bzl", "vulkan_repositories")
