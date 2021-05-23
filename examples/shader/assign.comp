@@ -3,6 +3,8 @@
 #ifndef ASSIGN_COMP_
 #define ASSIGN_COMP_
 
+#include <mylib/mylib.glsl>
+
 
 layout (
     local_size_x_id = 1, local_size_x = 1,
@@ -17,7 +19,9 @@ layout(binding = 0) buffer out0 {
 void main() {
 
     const uint index = gl_GlobalInvocationID.x;
-    out_buffer[index] = index;
+
+    // A_VERY_IMPORTANT_CONSTANT is defined in mylib/mylib.glsl
+    out_buffer[index] = A_VERY_IMPORTANT_CONSTANT;
 }
 
 #endif // ASSIGN_COMP_
