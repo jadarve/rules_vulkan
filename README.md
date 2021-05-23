@@ -7,14 +7,12 @@ Bazel rules for using the [Vulkan SDK](https://vulkan.lunarg.com/sdk/home).
 Include the following configuration in your project's `WORKSPACE` file.
 
 ```python
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
-http_archive(
+git_repository(
     name = "rules_vulkan",
-    urls = [
-        "https://github.com/jadarve/rules_vulkan/archive/refs/tags/v0.0.1.zip",
-    ],
-    sha256 = "1f640f6ddedddfb6c8eb8cfa065de4621ab510f8f6a47a69986ca11bb466f061",
+    remote = "https://github.com/jadarve/rules_vulkan.git",
+    tag = "v0.0.1"
 )
 
 load("@rules_vulkan//vulkan:repositories.bzl", "vulkan_repositories")
