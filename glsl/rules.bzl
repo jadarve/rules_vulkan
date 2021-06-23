@@ -34,11 +34,15 @@ def _glsl_header_library(ctx):
                 fail("strip_include_prefix \"{0}\" not found in header \"{1}\" path.".format(
                     strip_include_prefix, hdr.path))
 
+    runfiles = ctx.runfiles(files=ctx.files.hdrs)
+    default_files = depset(direct=ctx.files.hdrs)
+
     return [
         GlslInfo(
             headers=depset(direct=ctx.files.hdrs),
             includes=depset(direct=includes.keys())
-        )
+        ),
+        DefaultInfo(files=default_files, runfiles=runfiles)
     ]
 
 def _glsl_shader(ctx):
