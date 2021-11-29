@@ -31,8 +31,6 @@ cc_library(
     visibility = ["//visibility:public"]
 )
 
-# FIXME: I cannot actually run this one in _glsl_shader. There is an error
-# when running _glsl_shader rule
 filegroup(
     name = "glslc",
     srcs = ["vulkan_sdk_macos/bin/glslc"],
