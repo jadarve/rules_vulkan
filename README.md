@@ -24,7 +24,8 @@ By calling `vulkan_repositories()`, the package will look for the Vulkan SDK ins
 | Repository       | Defined Targets                                                                                                                                              |
 |------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `vulkan_windows` | * `vulkan_cc_library` for compiling C/C++ targets that depend on Vulkan. <br> * `glslc` filegroup for the GLSL compiler, used internally to compile shaders. |
-| `vulkan_linux`   | Nothing at the moment. The GLSL compiler is accessed directly from the system.                                                                               |
+| `vulkan_linux`   | Nothing at the moment. The GLSL compiler is accessed directly from the system.
+| `vulkan_macos`   | * `vulkan_cc_library` for compiling C/C++ targets that depend on Vulkan. <br> * `glslc` filegroup for the GLSL compiler, used internally to compile shaders. |
 
 ## Rules
 
