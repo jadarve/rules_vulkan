@@ -10,11 +10,14 @@ cc_binary(
         "//:linux": [
             "-lvulkan",
         ],
-        "//:windows": [],
+        "//conditions:default": [],
     }),
     deps = select({
         "//:windows": [
             "@vulkan_windows//:vulkan_cc_library",
+        ],
+        "//:macos": [
+            "@vulkan_macos//:vulkan_cc_library",
         ],
         "//conditions:default": [],
     }),

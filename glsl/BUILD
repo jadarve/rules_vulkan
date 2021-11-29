@@ -46,3 +46,23 @@ toolchain(
     toolchain = ":on_windows",
     toolchain_type = "@rules_vulkan//glsl:toolchain_type",
 )
+
+#################################################
+## MACOS
+#################################################
+
+glsl_toolchain(
+    name = "on_macos",
+    glslc = "@vulkan_macos//:glslc",
+    is_windows = False,
+)
+
+toolchain(
+    name = "glsl_macos_toolchain",
+    exec_compatible_with = [
+        "@platforms//os:macos",
+        "@platforms//cpu:x86_64",
+    ],
+    toolchain = ":on_macos",
+    toolchain_type = "@rules_vulkan//glsl:toolchain_type",
+)
