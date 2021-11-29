@@ -8,4 +8,4 @@ local_repository(
 )
 
 load("@rules_vulkan//vulkan:repositories.bzl", "vulkan_repositories")
-vulkan_repositories("/Users/morfly/VulkanSDK/1.2.198.0/macOS")
+vulkan_repositories()
