@@ -5,10 +5,10 @@ def _impl(repository_ctx):
 
     sdk_path = repository_ctx.attr.path
 
-    if sdk_path == None:
+    if sdk_path == '':
         sdk_path = repository_ctx.os.environ.get("VULKAN_SDK", None)
 
-    if sdk_path == None:
+    if sdk_path == '' or sdk_path == None:
         print("VULKAN_SDK environment variable not found, using /usr")
         sdk_path = "/usr"
 

@@ -5,10 +5,10 @@ def _impl(repository_ctx):
 
     sdk_path = repository_ctx.attr.path
 
-    if sdk_path == None:
+    if sdk_path == '':
         sdk_path = repository_ctx.os.environ.get("VULKAN_SDK", None)
 
-    if len(sdk_path) == 0 or sdk_path == None:
+    if sdk_path == '' or sdk_path == None:
         fail("Unable to find Vulkan SDK")
 
     repository_ctx.symlink(sdk_path, "vulkan_sdk_macos")
