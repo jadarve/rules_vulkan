@@ -3,7 +3,13 @@
 
 def _impl(repository_ctx):
 
-    sdk_path = repository_ctx.os.environ["VULKAN_SDK"]
+    sdk_path = repository_ctx.attr.path
+
+    if sdk_path == '':
+        sdk_path = repository_ctx.os.environ["VULKAN_SDK", None]
+
+    if sdk_path == '' or sdk_path == None:
+        fail("Unable to find Vulkan SDK")
 
     repository_ctx.symlink(sdk_path, "vulkan_sdk_windows")
 
@@ -29,7 +35,10 @@ filegroup(
     repository_ctx.file("BUILD.bazel", file_content)
 
 vulkan_windows = repository_rule(
-    implementation=_impl,
+    implementation = _impl,
     local = True,
-    environ = ["VULKAN_SDK"]
+    environ = ["VULKAN_SDK"],
+    attrs = {
+        "path": attr.string(mandatory = False),
+    },
 )

@@ -9,7 +9,7 @@
 *.spv
 
 # Bazel
-bazel-*/
+bazel-*
 
 # CLion
 .clwb/
