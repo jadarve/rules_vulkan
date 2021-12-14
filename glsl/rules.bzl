@@ -51,7 +51,7 @@ def _glsl_shader(ctx):
 
     shader = ctx.file.shader
 
-    spirv_name = shader.basename[:-len(shader.extension)] + "spv"
+    spirv_name = shader.basename + ".spv"
 
     spirv = ctx.actions.declare_file(spirv_name, sibling=shader)
 
