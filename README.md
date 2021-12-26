@@ -12,7 +12,7 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 git_repository(
     name = "rules_vulkan",
     remote = "https://github.com/jadarve/rules_vulkan.git",
-    tag = "v0.0.3"
+    tag = "v0.0.5"
 )
 
 load("@rules_vulkan//vulkan:repositories.bzl", "vulkan_repositories")
