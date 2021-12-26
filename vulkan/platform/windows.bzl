@@ -6,7 +6,7 @@ def _impl(repository_ctx):
     sdk_path = repository_ctx.attr.path
 
     if sdk_path == '':
-        sdk_path = repository_ctx.os.environ["VULKAN_SDK", None]
+        sdk_path = repository_ctx.os.environ["VULKAN_SDK"]
 
     if sdk_path == '' or sdk_path == None:
         fail("Unable to find Vulkan SDK")
