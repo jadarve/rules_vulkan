@@ -1,8 +1,18 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
-load("defs.bzl", "VULKAN_LIBRARIES", "VULKAN_LINKOPTS")
+
+VULKAN_LINKOPTS = select({
+    "@bazel_tools//src/conditions:linux": ["-lvulkan"],
+    "//conditions:default": [],
+})
+
+VULKAN_LIBRARIES = select({
+    "@bazel_tools//src/conditions:windows": ["@vulkan_windows//:vulkan_cc_library"],
+    "@bazel_tools//src/conditions:darwin": ["@vulkan_macos//:vulkan_cc_library"],
+    "//conditions:default": [],
+})
 
 cc_library(
-    name = "sdk",
+    name = "vulkan_cc_library",
     linkopts = VULKAN_LINKOPTS,
     visibility = ["//visibility:public"],
     deps = VULKAN_LIBRARIES,
