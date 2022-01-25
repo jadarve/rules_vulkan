@@ -1,25 +1,8 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary")
 
-
 cc_binary(
     name = "list_extensions",
-    srcs = [
-        "list_extensions.cpp"
-    ],
-    linkopts = select({
-        "//:linux": [
-            "-lvulkan",
-        ],
-        "//conditions:default": [],
-    }),
-    deps = select({
-        "//:windows": [
-            "@vulkan_windows//:vulkan_cc_library",
-        ],
-        "//:macos": [
-            "@vulkan_macos//:vulkan_cc_library",
-        ],
-        "//conditions:default": [],
-    }),
-    visibility = ["//visibility:public"]
+    srcs = ["list_extensions.cpp"],
+    visibility = ["//visibility:public"],
+    deps = ["@rules_vulkan//vulkan:vulkan_cc_library"],
 )
