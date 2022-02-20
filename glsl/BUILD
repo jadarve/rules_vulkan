@@ -21,7 +21,6 @@ toolchain(
     name = "glsl_linux_toolchain",
     exec_compatible_with = [
         "@platforms//os:linux",
-        "@platforms//cpu:x86_64",
     ],
     toolchain = ":on_linux",
     toolchain_type = "@rules_vulkan//glsl:toolchain_type",

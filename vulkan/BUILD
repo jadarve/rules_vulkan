@@ -1,7 +1,7 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 VULKAN_LINKOPTS = select({
-    "@bazel_tools//src/conditions:linux": ["-lvulkan"],
+    "@platforms//os:linux": ["-lvulkan"],
     "//conditions:default": [],
 })
 
