@@ -1,13 +1,16 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 VULKAN_LINKOPTS = select({
-    "@platforms//os:linux": ["-lvulkan"],
+
+    "@rules_vulkan//:linux": ["-lvulkan"],
+    "@rules_vulkan//:android": [],
     "//conditions:default": [],
 })
 
 VULKAN_LIBRARIES = select({
-    "@bazel_tools//src/conditions:windows": ["@vulkan_windows//:vulkan_cc_library"],
-    "@bazel_tools//src/conditions:darwin": ["@vulkan_macos//:vulkan_cc_library"],
+    "@rules_vulkan//:windows": ["@vulkan_windows//:vulkan_cc_library"],
+    "@rules_vulkan//:darwin": ["@vulkan_macos//:vulkan_cc_library"],
+    "@rules_vulkan//:android": ["@vulkan_android//:vulkan_cc_library"],
     "//conditions:default": [],
 })
 
