@@ -2,6 +2,7 @@ load("@rules_vulkan//glsl:repositories.bzl", "glsl_repositories")
 load("@rules_vulkan//vulkan/platform:windows.bzl", "vulkan_windows")
 load("@rules_vulkan//vulkan/platform:linux.bzl", "vulkan_linux")
 load("@rules_vulkan//vulkan/platform:macos.bzl", "vulkan_macos")
+load("@rules_vulkan//vulkan/platform:android.bzl", "vulkan_android")
 
 def vulkan_repositories(sdk_path = None):
     """Loads the required repositories into the workspace.
@@ -24,6 +25,10 @@ def vulkan_repositories(sdk_path = None):
     vulkan_macos(
         name = "vulkan_macos",
         path = sdk_path,
+    )
+
+    vulkan_android(
+        name = "vulkan_android",
     )
 
     glsl_repositories()

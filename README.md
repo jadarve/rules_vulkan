@@ -12,7 +12,7 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 git_repository(
     name = "rules_vulkan",
     remote = "https://github.com/jadarve/rules_vulkan.git",
-    tag = "v0.0.6"
+    tag = "v0.0.7"
 )
 
 load("@rules_vulkan//vulkan:repositories.bzl", "vulkan_repositories")
@@ -24,8 +24,9 @@ By calling `vulkan_repositories()`, the package will look for the Vulkan SDK ins
 | Repository       | Defined Targets                                                                                                                                              |
 |------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `vulkan_windows` | * `vulkan_cc_library` for compiling C/C++ targets that depend on Vulkan. <br> * `glslc` filegroup for the GLSL compiler, used internally to compile shaders. |
-| `vulkan_linux`   | Nothing at the moment. The GLSL compiler is accessed directly from the system.
+| `vulkan_linux`   | Nothing at the moment. The GLSL compiler is accessed directly from the system.                                                                               |
 | `vulkan_macos`   | * `vulkan_cc_library` for compiling C/C++ targets that depend on Vulkan. <br> * `glslc` filegroup for the GLSL compiler, used internally to compile shaders. |
+| `vulkan_android` | * **EXPERIMENTAL** `vulkan_cc_library` for compiling C/C++ targets that depend on Vulkan. <br> * `glslc` is assumed to be available in the host platform.    |
 
 ## Rules
 

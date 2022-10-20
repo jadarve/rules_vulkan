@@ -9,7 +9,6 @@ def _impl(repository_ctx):
         sdk_path = repository_ctx.os.environ.get("VULKAN_SDK", None)
 
     if sdk_path == '' or sdk_path == None:
-        print("VULKAN_SDK environment variable not found, using /usr")
         sdk_path = "/usr"
 
     repository_ctx.symlink(sdk_path, "vulkan_sdk_linux")
@@ -27,7 +26,6 @@ cc_library(
         "vulkan_sdk_linux/include/vulkan/**/*.h",
         "vulkan_sdk_linux/include/vulkan/**/*.hpp",
         ]),
-    includes = ["vulkan"],
     visibility = ["//visibility:public"]
 )
 
