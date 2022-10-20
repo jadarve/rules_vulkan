@@ -5,16 +5,19 @@
 config_setting (
     name = "linux",
     constraint_values = [
-        "@platforms//os:linux"
+        "@platforms//os:linux",
     ],
     visibility = ["//visibility:public"]
 )
 
 config_setting (
     name = "android",
+    # constraint_values = [
+    #     # Does not work with mediapipe 
+    #     "@platforms//os:android",
+    # ],
     values = {
-        # at least this works for building mediapipe AAR
-        "host_crosstool_top": "@bazel_tools//tools/cpp:toolchain",
+        "define": "RULES_VULKAN_ANDROID=1"
     },
     visibility = ["//visibility:public"]
 )

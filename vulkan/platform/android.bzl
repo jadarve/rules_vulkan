@@ -6,8 +6,6 @@ def _impl(repository_ctx):
     ndk_home = repository_ctx.os.environ.get('ANDROID_NDK_HOME', None)
     if ndk_home == None:
         fail('ANDROID_NDK_HOME environment variable not found')
-    
-    print("MONI: " + ndk_home + "/sources/third_party/vulkan/src/include")
 
     repository_ctx.symlink(ndk_home, "vulkan_sdk_android")    
 
