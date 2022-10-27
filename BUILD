@@ -17,7 +17,8 @@ config_setting (
     #     "@platforms//os:android",
     # ],
     values = {
-        "define": "RULES_VULKAN_ANDROID=1"
+        # same as that of mediapipe
+        "crosstool_top": "//external:android/crosstool"
     },
     visibility = ["//visibility:public"]
 )
