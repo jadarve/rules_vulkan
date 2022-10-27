@@ -16,7 +16,10 @@ git_repository(
 )
 
 load("@rules_vulkan//vulkan:repositories.bzl", "vulkan_repositories")
-vulkan_repositories()
+vulkan_repositories(
+    sdk_path = 'OPTIONAL: path to the host Vulkan SDK, otherwise use VULKAN_SDK env variable',
+    android_use_host_vulkan_sdk = True, # For android, whether or not use the Vulkan headers provided by the NDK.
+)
 ```
 
 By calling `vulkan_repositories()`, the package will look for the Vulkan SDK installed in your Operating System and create the following extra repositories:
