@@ -14,7 +14,6 @@ toolchain_type(
 glsl_toolchain(
     name = "on_linux",
     glslc = "@vulkan_linux//:glslc",
-    is_windows = False,
 )
 
 toolchain(
@@ -33,7 +32,6 @@ toolchain(
 glsl_toolchain(
     name = "on_windows",
     glslc = "@vulkan_windows//:glslc",
-    is_windows = True,
 )
 
 toolchain(
@@ -53,7 +51,6 @@ toolchain(
 glsl_toolchain(
     name = "on_macos",
     glslc = "@vulkan_macos//:glslc",
-    is_windows = False,
 )
 
 toolchain(

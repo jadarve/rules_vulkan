@@ -2,14 +2,19 @@
 """
 
 def _impl(repository_ctx):
+    """
+    Vulkan linux repository implementation
+    """
 
     sdk_path = repository_ctx.attr.path
+    lib_path = "lib"
 
-    if sdk_path == '':
+    if sdk_path == "":
         sdk_path = repository_ctx.os.environ.get("VULKAN_SDK", None)
 
-    if sdk_path == '' or sdk_path == None:
+    if sdk_path == "" or sdk_path == None:
         sdk_path = "/usr"
+        lib_path = "lib/x86_64-linux-gnu"
 
     repository_ctx.symlink(sdk_path, "vulkan_sdk_linux")
 
@@ -21,7 +26,7 @@ def _impl(repository_ctx):
 
 cc_library(
     name = "vulkan_cc_library",
-    srcs = ["vulkan_sdk_linux/lib/x86_64-linux-gnu/libvulkan.so"],
+    srcs = ["vulkan_sdk_linux/{0}/libvulkan.so"],  # replace lib_path
     hdrs = glob([
         "vulkan_sdk_linux/include/vulkan/**/*.h",
         "vulkan_sdk_linux/include/vulkan/**/*.hpp",
@@ -29,14 +34,12 @@ cc_library(
     visibility = ["//visibility:public"]
 )
 
-# FIXME: I cannot actually run this one in _glsl_shader. There is an error
-# when running _glsl_shader rule
 filegroup(
     name = "glslc",
     srcs = ["vulkan_sdk_linux/bin/glslc"],
     visibility = ["//visibility:public"],
 )
-""".format(str(glslc_path)[1:])
+""".format(lib_path)
 
     repository_ctx.file("BUILD.bazel", file_content)
 
