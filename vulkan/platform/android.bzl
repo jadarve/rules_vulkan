@@ -7,6 +7,8 @@ cc_library(
     hdrs = glob([
         "host_vulkan_sdk/include/vulkan/**/*.h",
         "host_vulkan_sdk/include/vulkan/**/*.hpp",
+        "host_vulkan_sdk/include/vk_video/**/*.h",
+        "host_vulkan_sdk/include/vk_video/**/*.hpp",
         ]),
     includes = [
         "host_vulkan_sdk/include",
@@ -17,7 +19,7 @@ cc_library(
 
 filegroup(
     name = "glslc",
-    srcs = ["host_vulkan_sdk/bind/glslc"],
+    srcs = ["host_vulkan_sdk/bin/glslc"],
     visibility = ["//visibility:public"],
 )
 """
