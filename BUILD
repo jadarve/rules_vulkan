@@ -1,26 +1,14 @@
-
 # See https://github.com/bazelbuild/bazel/blob/master/src/conditions/BUILD for standard conditions.
 # Unfortunately, there is no one for android at the moment.
+# Linux is the default platform.
 
-config_setting (
-    name = "linux",
-    constraint_values = [
-        "@platforms//os:linux",
-    ],
-    visibility = ["//visibility:public"]
-)
-
-config_setting (
+config_setting(
     name = "android",
-    # constraint_values = [
-    #     # Does not work with mediapipe 
-    #     "@platforms//os:android",
-    # ],
     values = {
         # same as that of mediapipe
-        "crosstool_top": "//external:android/crosstool"
+        "crosstool_top": "//external:android/crosstool",
     },
-    visibility = ["//visibility:public"]
+    visibility = ["//visibility:public"],
 )
 
 config_setting(
@@ -38,7 +26,7 @@ config_setting(
 filegroup(
     name = "readme_file",
     srcs = [
-        "README.md"
+        "README.md",
     ],
-    visibility = ["//visibility:public"]
+    visibility = ["//visibility:public"],
 )
