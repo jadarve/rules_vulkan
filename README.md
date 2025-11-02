@@ -73,3 +73,8 @@ glsl_shader(
 ## Examples
 
 See the [examples](examples) folder to see how to use the rules.
+
+## Similar projects
+
+- [mxpv/rules_vulkan](https://github.com/mxpv/rules_vulkan/)
+- [zaucy/rules_vulkan](https://github.com/zaucy/rules_vulkan)
